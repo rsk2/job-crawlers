@@ -15,7 +15,6 @@ def read( num_jobs=None):
         A dictionary of all the jobs with the job id as the key
     '''
     url = "https://caesars.taleo.net/careersection/rest/jobboard/searchjobs?lang=en&portal=8100120159"
-    print('reading from url [' + str(url) + ']')
     job_desc_url = 'https://caesars.taleo.net/careersection/czr_ext_cs/jobdetail.ftl'
     jobs = {}
     page_number = 1
@@ -97,12 +96,9 @@ def read( num_jobs=None):
                     job = {}
                     job['ExternalOrganization'] = 'Caesars Entertainment'
                     job['JobTitle'] = item["column"][0]
-                    print(job['JobTitle'])
                     job['ExternalId'] = item["column"][1]
-                    print(job['ExternalId'])
                     job['ExternalUrl'] = job_desc_url + "?job=" + job['ExternalId']
                     job['Location'] = item["column"][2].replace("[","").replace("]","").replace("\"","")
-                    print(job['Location'])
                     count += 1
                     desc_response = requests.get(job['ExternalUrl'], verify=False)
                     page_soup = BeautifulSoup(desc_response.text, "html.parser")
