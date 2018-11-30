@@ -1,2 +1,2 @@
 # pystuff
-Python stuff
+Python scripts which crawl websites for jobs
